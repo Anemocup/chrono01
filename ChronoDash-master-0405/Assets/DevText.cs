@@ -10,7 +10,7 @@ public class DevText : MonoBehaviour
     public GameObject enterText;
     public float sensorVal;
     public bool isAbsoluteValue = true;
-    public int dataPointIndex = 8;
+    public int dataPointIndex = 2;
     private Rigidbody arrowObj;
 
     TextMeshProUGUI enterText_text;
@@ -19,13 +19,12 @@ public class DevText : MonoBehaviour
     void Start()
     {
         enterText_text = enterText.GetComponent<TextMeshProUGUI>();
-
     }
 
     // Update is called once per frame
     void Update()
     {
-	sensorVal = (float)Math.Round(Mathf.Abs(udpSource.valArray[dataPointIndex]), 2);
+	sensorVal = (float)Math.Round(Mathf.Abs(udpSource.valArray[dataPointIndex]) / 100, 0) * 100;
         enterText_text.text = sensorVal.ToString();
     }
 
